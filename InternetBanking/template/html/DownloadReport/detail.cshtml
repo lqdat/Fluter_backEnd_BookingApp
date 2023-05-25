@@ -1,0 +1,54 @@
+@*@model BookingApp.Models.BaoCaoModel*@
+<table border="0" cellspacing="0" cellpadding="2" width="50%">
+    <tbody>
+        <tr>
+            <td colspan="6" rowspan="3" align="center">
+                <b>BÁO CÁO CÁC KHOẢN VAY </b>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="DetailTable" id="detail" border="1" cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td align="center" rowspan="1" colspan="1"><b>Ngày Vay</b></td>
+            <td align="center" rowspan="1" colspan="1"><b>Ngày Trả</b></td>
+            <td align="center" rowspan="1" colspan="1"><b>Kỳ Hạn</b></td>
+            <td align="center" rowspan="1" colspan="1"><b>Lãi suất trên năm (%/năm)</b></td>
+            <td align="center" rowspan="1" colspan="1"><b>Lãi suất khoản vay (vnd/năm)</b></td>
+            <td align="center" rowspan="1" colspan="1"><b>Số tiền vay</b></td>
+            <td align="center" rowspan="1" colspan="1"><b>Tổng tiền</b></td>
+        </tr>
+
+        @{
+            foreach (var item in Model.Body)
+            {
+
+                <tr>
+                    <td align="center">
+                        @BookingApp.Ultility.Helpers.Helper.FormatDatetime(@item.NgayVay)
+                    </td>
+                    <td align="center">
+                        @BookingApp.Ultility.Helpers.Helper.FormatDatetime(@item.NgayTra)
+                    </td>
+                    <td align="center">
+                        @item.KyHan
+                    </td>
+                    <td align="center">
+                        @item.LaiSuatTrenNam
+                    </td>
+                    <td align="center">
+                        @BookingApp.Ultility.Helpers.Helper.PhanCachHangNgan(@item.LaiSuat)
+                    </td>
+                    <td align="center">
+                        @BookingApp.Ultility.Helpers.Helper.PhanCachHangNgan(@item.SoTienVay)
+                    </td>
+                    <td align="right">
+                        @BookingApp.Ultility.Helpers.Helper.PhanCachHangNgan(@item.TongTien)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

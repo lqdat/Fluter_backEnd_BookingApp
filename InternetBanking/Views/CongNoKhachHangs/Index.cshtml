@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BookingApp.DataProvider.EF.Sale_CongNoKhachHang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayTao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaChungTu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiChungTu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaTri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDuNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DM_LienHe.NguoiTao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayTao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaChungTu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiChungTu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaTri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDuNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DM_LienHe.NguoiTao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

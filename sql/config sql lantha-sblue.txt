@@ -1,0 +1,22 @@
+<connectionStrings>
+
+    <add name="Entities" connectionString="metadata=res://*/DataProvider.EF.Model.csdl|res://*/DataProvider.EF.Model.ssdl|res://*/DataProvider.EF.Model.msl;provider=System.Data.SqlClient;                    provider connection string=&quot;data source=103.74.116.95;initial catalog=gdt_lantha;user id=gdt_lantha;password=lantha@123#@!;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+
+    <add name="dbContext" connectionString="Server=103.74.116.95;Database=gdt_lantha;User ID=gdt_lantha;Password=lantha@123#@!;" providerName="System.Data.EntityClient" />
+
+    <add name="CCEntities" connectionString="metadata=res://*/DataProvider.EF.ModelCC.csdl|res://*/DataProvider.EF.ModelCC.ssdl|res://*/DataProvider.EF.ModelCC.msl;provider=System.Data.SqlClient;                    provider connection string=&quot;data source=103.74.116.95;initial catalog=db_chungcu;user id=quanlychungcu;password=quanlychungcu@123#@!;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="ManagementEntities" connectionString="metadata=res://*/DataProvider.EF.ModelManagement.csdl|res://*/DataProvider.EF.ModelManagement.ssdl|res://*/DataProvider.EF.ModelManagement.msl;provider=System.Data.SqlClient;                    provider connection string=&quot;data source=103.74.116.95;initial catalog=db_vanhanhchungcu;user id=quanlychungcu;password=quanlychungcu@123#@!;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+
+  </connectionStrings>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ <connectionStrings>
+
+    <add name="Entities" connectionString="metadata=res://*/DataProvider.EF.Model.csdl|res://*/DataProvider.EF.Model.ssdl|res://*/DataProvider.EF.Model.msl;provider=System.Data.SqlClient;                    provider connection string=&quot;data source=103.74.116.95;initial catalog=gdt_sblue;user id=gdt_sblue;password=sblue@123#@!;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+
+    <add name="dbContext" connectionString="Server=103.74.116.95;Database=gdt_sblue;User ID=gdt_sblue;Password=sblue@123#@!;" providerName="System.Data.EntityClient" />
+
+    <add name="CCEntities" connectionString="metadata=res://*/DataProvider.EF.ModelCC.csdl|res://*/DataProvider.EF.ModelCC.ssdl|res://*/DataProvider.EF.ModelCC.msl;provider=System.Data.SqlClient;                    provider connection string=&quot;data source=103.74.116.95;initial catalog=db_chungcu;user id=quanlychungcu;password=quanlychungcu@123#@!;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="ManagementEntities" connectionString="metadata=res://*/DataProvider.EF.ModelManagement.csdl|res://*/DataProvider.EF.ModelManagement.ssdl|res://*/DataProvider.EF.ModelManagement.msl;provider=System.Data.SqlClient;                    provider connection string=&quot;data source=103.74.116.95;initial catalog=db_vanhanhchungcu;user id=quanlychungcu;password=quanlychungcu@123#@!;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+
+  </connectionStrings>

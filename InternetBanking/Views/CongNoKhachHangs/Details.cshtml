@@ -1,0 +1,66 @@
+﻿@model BookingApp.DataProvider.EF.Sale_CongNoKhachHang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sale_CongNoKhachHang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaChungTu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaChungTu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiChungTu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiChungTu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaTri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaTri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoDuNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDuNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DM_LienHe.NguoiTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DM_LienHe.NguoiTao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

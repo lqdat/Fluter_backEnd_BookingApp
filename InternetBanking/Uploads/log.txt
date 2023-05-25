@@ -1,0 +1,1 @@
+Status:True;Message:Ký số thành công;FileName:4.pdf;FileServer:/QuanLyVanBan/Download?id=49660dac-f798-47cc-9d13-04a63da2756f;

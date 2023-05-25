@@ -1,0 +1,89 @@
+@*@model BookingApp.DataProvider.EF.PhieuThuChi*@
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+    @foreach (var phieu in Model.Body.phieuGiaoNhans)
+    {
+        <table border="0" cellspacing="0" cellpadding="1" width="100%">
+            <tbody>
+                <tr>
+                    <td align="center">
+                        <h3><b> PHIẾU GIAO NHẬN VÀ THANH TOÁN </b> </h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h4><b> Ngày giao hàng:  @Model.Body.NgayGiao </b> </h4>
+                    </td>
+            </tbody>
+        </table>
+
+        <table class="DetailTable" id="detail" border="0" cellspacing="0" cellpadding="2">
+            <tbody>
+                <tr>
+                    <td colspan="2" align="left">
+                        <b>Nhà Phân Phối: @Model.Body.thongTinDonVi.NhaPhanPhoi</b>
+                    </td>
+                    <td align="left">
+                        <b>ĐT: @Model.Body.thongTinDonVi.DienThoai</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left">
+                        <b>Địa chỉ: @Model.Body.thongTinDonVi.DiaChi</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="left">
+                        <b>Khách hàng: @phieu.thongTinKhachHang.TenKhachHang</b>
+                    </td>
+                    <td align="left">
+                        <b>ĐT: @phieu.thongTinKhachHang.DienThoai</b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="DetailTable" id="detail" border="0" cellspacing="0" cellpadding="2">
+            <tbody>
+                <tr>
+                    <td colspan="3" align="left">
+                        <b>Đ/c GH: @phieu.thongTinKhachHang.DiaChi</b>
+                    </td>
+                    <td align="left">
+                        <b>NVBH: @phieu.NVBH</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <b>Công nợ tiền:</b>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td align="left">
+                        <b> ĐT NVBH: </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <b> Phiếu xuất kho: @Model.Body.PhieuXuatKho</b>
+                    </td>
+                    <td align="left">
+                        <b> Hóa đơn số: @phieu.thongTinGiao.MaHoaDon</b>
+                    </td>
+                    <td align="left">
+                        <b> Ngày đặt hàng: @phieu.thongTinGiao.NgayTao</b>
+                    </td>
+                    <td align="left">
+                        <b>NVGH: @Model.Body.NVGH</b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    </body>
+</html>

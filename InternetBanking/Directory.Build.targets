@@ -1,0 +1,20 @@
+﻿<Project>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugSymbols>false</DebugSymbols>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+	<PropertyGroup>
+		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<GeneratedBindingRedirectsAction>Overwrite</GeneratedBindingRedirectsAction>
+	</PropertyGroup>
+	<Target Name="SystemWebProject_ChooseConfigFileForGenerateBindingRedirects"
+		   BeforeTargets="GenerateBindingRedirects"
+		   Condition="@(SuggestedBindingRedirects->Count()) > 0">
+		<PropertyGroup Label="Set the location of the file to which the suggestedBindingRedirects should be written during the GenerateBindingRedirects Target">
+			<_GenerateBindingRedirectsIntermediateAppConfig>Web.config</_GenerateBindingRedirectsIntermediateAppConfig>
+		</PropertyGroup>
+		<Warning File="Web.config"
+				 Text="Generated Binding Redirects have been applied automatically to the Web.config. This warning will disappear on the next build." />
+	</Target>
+</Project>

@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TaiKhoan_Id" Type="uniqueidentifier" />
+          <Property Name="Xe_Id" Type="uniqueidentifier" />
+          <Property Name="GiaTien" Type="money" />
+          <Property Name="NgayDat" Type="datetime" />
+          <Property Name="DiaDiemDen" Type="nvarchar" MaxLength="100" />
+          <Property Name="DiaDiemDi" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sao" Type="float" />
+          <Property Name="KhoangCach" Type="float" />
+          <Property Name="DanhGia" Type="nvarchar" MaxLength="100" />
+          <Property Name="TrangThai" Type="int" />
+          <Property Name="GiamGia_Id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="DM_MaKhuyenMai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="Prepayment" Type="int" />
+          <Property Name="ExpretionDate" Type="datetime" />
+          <Property Name="TaiKhoan_Id" Type="uniqueidentifier" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="DM_Voucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="100" />
+          <Property Name="ExpretionDate" Type="datetime" />
+          <Property Name="Prepayment" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DM_Xe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="URLImage" Type="varchar(max)" />
+          <Property Name="GiaTienTrenKm" Type="money" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SDT" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenHienThi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="URLImage" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ThongBao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TaiKhoan_Id" Type="uniqueidentifier" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="100" />
+          <Property Name="Ngay" Type="datetime" />
+        </EntityType>
+        <Association Name="BookHistory_FK">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BookHistory" Type="Self.BookHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookHistory">
+              <PropertyRef Name="TaiKhoan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookHistory_FK_1">
+          <End Role="DM_Xe" Type="Self.DM_Xe" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BookHistory" Type="Self.BookHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Xe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookHistory">
+              <PropertyRef Name="Xe_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookHistory_FK_discout">
+          <End Role="DM_MaKhuyenMai" Type="Self.DM_MaKhuyenMai" Multiplicity="0..1" />
+          <End Role="BookHistory" Type="Self.BookHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_MaKhuyenMai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookHistory">
+              <PropertyRef Name="GiamGia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DM_MaKhuyenMai_FK">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DM_MaKhuyenMai" Type="Self.DM_MaKhuyenMai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DM_MaKhuyenMai">
+              <PropertyRef Name="TaiKhoan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ThongBao_FK">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ThongBao" Type="Self.ThongBao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThongBao">
+              <PropertyRef Name="TaiKhoan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookHistory" EntityType="Self.BookHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_MaKhuyenMai" EntityType="Self.DM_MaKhuyenMai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_Voucher" EntityType="Self.DM_Voucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DM_Xe" EntityType="Self.DM_Xe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongBao" EntityType="Self.ThongBao" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="BookHistory_FK" Association="Self.BookHistory_FK">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="BookHistory" EntitySet="BookHistory" />
+          </AssociationSet>
+          <AssociationSet Name="BookHistory_FK_1" Association="Self.BookHistory_FK_1">
+            <End Role="DM_Xe" EntitySet="DM_Xe" />
+            <End Role="BookHistory" EntitySet="BookHistory" />
+          </AssociationSet>
+          <AssociationSet Name="BookHistory_FK_discout" Association="Self.BookHistory_FK_discout">
+            <End Role="DM_MaKhuyenMai" EntitySet="DM_MaKhuyenMai" />
+            <End Role="BookHistory" EntitySet="BookHistory" />
+          </AssociationSet>
+          <AssociationSet Name="DM_MaKhuyenMai_FK" Association="Self.DM_MaKhuyenMai_FK">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="DM_MaKhuyenMai" EntitySet="DM_MaKhuyenMai" />
+          </AssociationSet>
+          <AssociationSet Name="ThongBao_FK" Association="Self.ThongBao_FK">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="ThongBao" EntitySet="ThongBao" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="Model.C__EFMigrationsHistory" />
+          <EntitySet Name="BookHistories" EntityType="Model.BookHistory" />
+          <EntitySet Name="DM_MaKhuyenMai" EntityType="Model.DM_MaKhuyenMai" />
+          <EntitySet Name="DM_Voucher" EntityType="Model.DM_Voucher" />
+          <EntitySet Name="DM_Xe" EntityType="Model.DM_Xe" />
+          <EntitySet Name="TaiKhoans" EntityType="Model.TaiKhoan" />
+          <EntitySet Name="ThongBaos" EntityType="Model.ThongBao" />
+          <AssociationSet Name="BookHistory_FK" Association="Model.BookHistory_FK">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="BookHistory" EntitySet="BookHistories" />
+          </AssociationSet>
+          <AssociationSet Name="BookHistory_FK_1" Association="Model.BookHistory_FK_1">
+            <End Role="DM_Xe" EntitySet="DM_Xe" />
+            <End Role="BookHistory" EntitySet="BookHistories" />
+          </AssociationSet>
+          <AssociationSet Name="BookHistory_FK_discout" Association="Model.BookHistory_FK_discout">
+            <End Role="DM_MaKhuyenMai" EntitySet="DM_MaKhuyenMai" />
+            <End Role="BookHistory" EntitySet="BookHistories" />
+          </AssociationSet>
+          <AssociationSet Name="DM_MaKhuyenMai_FK" Association="Model.DM_MaKhuyenMai_FK">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="DM_MaKhuyenMai" EntitySet="DM_MaKhuyenMai" />
+          </AssociationSet>
+          <AssociationSet Name="ThongBao_FK" Association="Model.ThongBao_FK">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="ThongBao" EntitySet="ThongBaos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BookHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TaiKhoan_Id" Type="Guid" />
+          <Property Name="Xe_Id" Type="Guid" />
+          <Property Name="GiaTien" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NgayDat" Type="DateTime" Precision="3" />
+          <Property Name="DiaDiemDen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiaDiemDi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sao" Type="Double" />
+          <Property Name="KhoangCach" Type="Double" />
+          <Property Name="DanhGia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="Int32" />
+          <Property Name="GiamGia_Id" Type="Guid" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Model.BookHistory_FK" FromRole="BookHistory" ToRole="TaiKhoan" />
+          <NavigationProperty Name="DM_Xe" Relationship="Model.BookHistory_FK_1" FromRole="BookHistory" ToRole="DM_Xe" />
+          <NavigationProperty Name="DM_MaKhuyenMai" Relationship="Model.BookHistory_FK_discout" FromRole="BookHistory" ToRole="DM_MaKhuyenMai" />
+        </EntityType>
+        <EntityType Name="DM_MaKhuyenMai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Prepayment" Type="Int32" />
+          <Property Name="ExpretionDate" Type="DateTime" Precision="3" />
+          <Property Name="TaiKhoan_Id" Type="Guid" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="BookHistories" Relationship="Model.BookHistory_FK_discout" FromRole="DM_MaKhuyenMai" ToRole="BookHistory" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Model.DM_MaKhuyenMai_FK" FromRole="DM_MaKhuyenMai" ToRole="TaiKhoan" />
+        </EntityType>
+        <EntityType Name="DM_Voucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExpretionDate" Type="DateTime" Precision="3" />
+          <Property Name="Prepayment" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DM_Xe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="URLImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GiaTienTrenKm" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="BookHistories" Relationship="Model.BookHistory_FK_1" FromRole="DM_Xe" ToRole="BookHistory" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CreateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenHienThi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="URLImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BookHistories" Relationship="Model.BookHistory_FK" FromRole="TaiKhoan" ToRole="BookHistory" />
+          <NavigationProperty Name="DM_MaKhuyenMai" Relationship="Model.DM_MaKhuyenMai_FK" FromRole="TaiKhoan" ToRole="DM_MaKhuyenMai" />
+          <NavigationProperty Name="ThongBaos" Relationship="Model.ThongBao_FK" FromRole="TaiKhoan" ToRole="ThongBao" />
+        </EntityType>
+        <EntityType Name="ThongBao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TaiKhoan_Id" Type="Guid" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ngay" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Model.ThongBao_FK" FromRole="ThongBao" ToRole="TaiKhoan" />
+        </EntityType>
+        <Association Name="BookHistory_FK">
+          <End Type="Model.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.BookHistory" Role="BookHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookHistory">
+              <PropertyRef Name="TaiKhoan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookHistory_FK_1">
+          <End Type="Model.DM_Xe" Role="DM_Xe" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.BookHistory" Role="BookHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_Xe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookHistory">
+              <PropertyRef Name="Xe_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookHistory_FK_discout">
+          <End Type="Model.DM_MaKhuyenMai" Role="DM_MaKhuyenMai" Multiplicity="0..1" />
+          <End Type="Model.BookHistory" Role="BookHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DM_MaKhuyenMai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookHistory">
+              <PropertyRef Name="GiamGia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DM_MaKhuyenMai_FK">
+          <End Type="Model.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.DM_MaKhuyenMai" Role="DM_MaKhuyenMai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DM_MaKhuyenMai">
+              <PropertyRef Name="TaiKhoan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ThongBao_FK">
+          <End Type="Model.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.ThongBao" Role="ThongBao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThongBao">
+              <PropertyRef Name="TaiKhoan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="Model.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookHistories">
+            <EntityTypeMapping TypeName="Model.BookHistory">
+              <MappingFragment StoreEntitySet="BookHistory">
+                <ScalarProperty Name="GiamGia_Id" ColumnName="GiamGia_Id" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="DanhGia" ColumnName="DanhGia" />
+                <ScalarProperty Name="KhoangCach" ColumnName="KhoangCach" />
+                <ScalarProperty Name="Sao" ColumnName="Sao" />
+                <ScalarProperty Name="DiaDiemDi" ColumnName="DiaDiemDi" />
+                <ScalarProperty Name="DiaDiemDen" ColumnName="DiaDiemDen" />
+                <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+                <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+                <ScalarProperty Name="Xe_Id" ColumnName="Xe_Id" />
+                <ScalarProperty Name="TaiKhoan_Id" ColumnName="TaiKhoan_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_MaKhuyenMai">
+            <EntityTypeMapping TypeName="Model.DM_MaKhuyenMai">
+              <MappingFragment StoreEntitySet="DM_MaKhuyenMai">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TaiKhoan_Id" ColumnName="TaiKhoan_Id" />
+                <ScalarProperty Name="ExpretionDate" ColumnName="ExpretionDate" />
+                <ScalarProperty Name="Prepayment" ColumnName="Prepayment" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Voucher">
+            <EntityTypeMapping TypeName="Model.DM_Voucher">
+              <MappingFragment StoreEntitySet="DM_Voucher">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Prepayment" ColumnName="Prepayment" />
+                <ScalarProperty Name="ExpretionDate" ColumnName="ExpretionDate" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DM_Xe">
+            <EntityTypeMapping TypeName="Model.DM_Xe">
+              <MappingFragment StoreEntitySet="DM_Xe">
+                <ScalarProperty Name="GiaTienTrenKm" ColumnName="GiaTienTrenKm" />
+                <ScalarProperty Name="URLImage" ColumnName="URLImage" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoans">
+            <EntityTypeMapping TypeName="Model.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="URLImage" ColumnName="URLImage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TenHienThi" ColumnName="TenHienThi" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongBaos">
+            <EntityTypeMapping TypeName="Model.ThongBao">
+              <MappingFragment StoreEntitySet="ThongBao">
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TaiKhoan_Id" ColumnName="TaiKhoan_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="af56316d0bcb42a69a7d171912411c66" Name="Diagram1" ZoomLevel="38">
+        <EntityTypeShape EntityType="Model.Sale_ChiTietPhieuChi" Width="1.5" PointX="9.75" PointY="41.875" />
+        <EntityTypeShape EntityType="Model.Sale_ChiTietPhieuThu" Width="1.5" PointX="15" PointY="49.375" />
+        <EntityTypeShape EntityType="Model.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.BookHistory" Width="1.5" PointX="5.25" PointY="4.125" />
+        <EntityTypeShape EntityType="Model.DM_MaKhuyenMai" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="Model.DM_Voucher" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.DM_Xe" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="Model.TaiKhoan" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="Model.ThongBao" Width="1.5" PointX="3" PointY="11.875" />
+        <AssociationConnector Association="Model.BookHistory_FK" />
+        <AssociationConnector Association="Model.BookHistory_FK_1" />
+        <AssociationConnector Association="Model.BookHistory_FK_discout" />
+        <AssociationConnector Association="Model.DM_MaKhuyenMai_FK" />
+        <AssociationConnector Association="Model.ThongBao_FK" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

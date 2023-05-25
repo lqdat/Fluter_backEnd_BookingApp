@@ -1,0 +1,41 @@
+@model BookingApp.Models.ReportModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    @foreach (var itemNhomPDT in Model.Body)
+    {
+        int i = 0;
+        <p>
+            <b>@itemNhomPDT.STT @itemNhomPDT.Name (T?ng s?: @itemNhomPDT.SoLuongDonVi)</b>
+        </p>
+        <table class="DetailTable" id="detail" border="1" cellspacing="0" cellpadding="2">
+            <tbody>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã c? s?</th>
+                    <th colspan="2">Tên c? s?</th>
+                    <th>Mã s? thu?</th>
+                    <th>??a ch?</th>
+                    <th>?i?n tho?i</th>
+                </tr>
+                @foreach (var itemDV in itemNhomPDT.listDonVi)
+                {
+                    i++;
+                    <tr>
+                        <td> @i </td>
+                        <td>@itemDV.MaDonVi </td>
+                        <td colspan="2">@itemDV.TenDonVi</td>
+                        <td>@itemDV.MaSoThue</td>
+                        <td>@itemDV.DiaChi</td>
+                        <td>@itemDV.DienThoai</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</body>
+</html>

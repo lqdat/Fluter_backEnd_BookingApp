@@ -1,0 +1,126 @@
+﻿<table align="center" id="detail" border="0" cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td excel-colspan="2" colspan="4" align="left">
+                <b>@Model.Header.TenDonVi</b><br />
+                @Model.Header.DiaChi
+            </td>
+            <td colspan="4" align="center">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="1" width="100%">
+    <tbody>
+        <tr>
+            <td colspan="2" align="center">
+            </td>
+            <td colspan="2" align="center">
+                <h3><b>PHIẾU MUA</b> </h3>
+                <h4><b>@Model.Body.thongTinIn.NgayIn</b></h4>
+                Mã đơn mua hàng: @Model.Body.MaMuaHang
+                <br />
+            </td>
+            <td colspan="2" align="left">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="DetailTable" id="detail" border="1" cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td align="center"> STT</td>
+            <td colspan="3" align="center">
+                Tên, quy cách, phẩm chất
+                hàng hoá (vật tư, công cụ...)
+            </td>
+            <td colspan="2" align="center"> Địa chỉ mua hàng </td>
+            <td align="center">Đơn vị tính </td>
+            <td align="center">Số lượng </td>
+            <td align="center">Đơn giá </td>
+            <td align="center">Thành tiền </td>
+        </tr>
+        <tr>
+            <td align="center"> A</td>
+            <td colspan="3" align="center"> B </td>
+            <td colspan="2" align="center"> C </td>
+            <td align="center">D </td>
+            <td align="center">1 </td>
+            <td align="center">2 </td>
+            <td align="center">3 </td>
+        </tr>
+        @{
+            int i = 0;
+            foreach (var item in Model.Body.chiTietMuaHang)
+            {
+                i += 1;
+                <tr>
+                    <td align="center">
+                        @i
+                    </td>
+                    <td colspan="3" align="left">
+                        @item.TenSanPham
+                    </td>
+                    <td colspan="2"> @Model.Body.NhaCungCap</td>
+                    <td>@item.DonViTinh</td>
+                    <td align="right">@item.FormatSoLuong</td>
+                    <td align="right">@item.FormatDonGia</td>
+                    <td align="right">@item.FormatThanhTien</td>
+                </tr>
+            }
+        }
+        <tr>
+            <td align="left"></td>
+            <td colspan="3" align="center"> <b> Cộng </b> </td>
+            <td colspan="2" align="left"></td>
+            <td align="center"> X </td>
+            <td align="center"> X</td>
+            <td align="center"> X</td>
+            <td align="right"> @Model.Body.FormatTienHang </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="DetailTable" id="detail" border="0" cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td align="left">
+                Tổng số tiền viết bằng chữ: @Model.Body.FormatTienHangChu
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                Ghi chú: .....................................................
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+    <tbody>
+        <tr>
+            <td excel-colspan="2" colspan="2" align="center">
+                <b>Người mua</b>
+            </td>
+            <td excel-colspan="2" colspan="2" align="center">
+                <b>Kế toán trưởng</b>
+            </td>
+            <td excel-colspan="2" colspan="2" align="center">
+                <b>Người duyệt mua</b>
+            </td>
+        </tr>
+        <tr>
+            <td excel-colspan="2" colspan="2" align="center">
+                <i>(Ký, họ tên)</i>
+            </td>
+            <td excel-colspan="2" colspan="2" align="center">
+                <i>(Ký, họ tên)</i>
+            </td>
+            <td excel-colspan="2" colspan="2" align="center">
+                <i>(Ký, họ tên)</i>
+            </td>
+        </tr>
+    </tbody>
+</table>

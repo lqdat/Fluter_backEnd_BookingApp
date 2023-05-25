@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td align="center">
+                    <h2><b>BÁO CÁO TỔNG HỢP PHƯƠNG TIỆN ĐO</b></h2>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="DetailTable" id="detail" border="1" cellspacing="0" cellpadding="8">
+        <tbody>
+            <tr>
+                <th>STT</th>
+                <th colspan="2">Tên phương tiện đo</th>
+                <th>Số hiệu PTĐ</th>
+                <th>Số quyết định phê duyệt mẫu</th>
+                <th>Hiệu lực kiểm định được cấp đến</th>
+            </tr>
+            @foreach (var itemNhomPDT in Model.Body)
+            {
+                <tr>
+                    <td align="center"><b>@itemNhomPDT.STT </b></td>
+                    <td colspan="4"> <b>@itemNhomPDT.Name </b>  </td>
+                    <td align="left"><b> Số lượng: @itemNhomPDT.SoLuongPTD </b> </td>
+                </tr>
+                int i = 0;
+                foreach (var itemPTD in itemNhomPDT.listPTD)
+                {
+                    i++;
+                    <tr>
+                        <td align="center"> @i </td>
+                        <td colspan="2">@itemPTD.TenPTD</td>
+                        <td>@itemPTD.SoHieu</td>
+                        <td>@itemPTD.SoQD_PD_Mau</td>
+                        <td>@BookingApp.Ultility.Helpers.Helper.FormatDatetime(@itemPTD.HieuLuc)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</body>
+</html>
